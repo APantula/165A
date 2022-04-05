@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <title>Grades in Lstore</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+<nav class="red lighten-1">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">ECS165 L-store database demo</a>
+    </div>
+</nav>
+<div class="section">
+    <div class="center">
+        <h4>
+            Find out about anybody's grades here @ UC Davis!
+        </h4>
+    </div>
+    <div class="row center">
+        <div class="col s6 m5 offset-m1">
+                <div class="card-panel {{'green lighten-3'}}">
+                <h5>I'd like to report somebody's grades</h5>
+                <form id="gradesfrom" name="gradesform" action="/" METHOD="POST">
+                    <table>
+                        <tr>
+                            <td><label for="name">Student ID:</label></td>
+                            <td><input type="text" id="name" name="name" style="width: 60%"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ecs165a">ECS165A:</label></td>
+                            <td><input type="number" id="ecs165a" name="ecs165a" style="width: 60%"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ecs120">ECS120:</label></td>
+                            <td><input type="number" id="ecs120" name="ecs120" style="width: 60%"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ecs132">ECS132:</label></td>
+                            <td><input type="number" id="ecs132" name="ecs132" style="width: 60%"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ecs160">ECS160:</label></td>
+                            <td><input type="number" id="ecs160" name="ecs160" style="width: 60%"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <input type="submit" value="Report grades" class = "btn green">
+                </form> 
+            </div>
+        </div>
+
+        <div class="col s6 m5">
+            <div class="card-panel {{'blue lighten-3'}}">
+                <h5>I'd like to check somebody's grades</h5>
+                <form id="inquiryfrom" name="inquiryform" action="/select" METHOD="POST">
+                    <table>
+                        <tr>
+                            <td><label for="name">Student ID:</label></td>
+                            <td><input type="text" id="name" name="name" style="width: 60%"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <input type="submit" value="See grades" class = "btn blue">
+                </form>
+            </div>
+            <h6>Grades of student ID {{ user_id }}:</h6>
+            <table>
+                {% for grade in record %}
+                    <tr>
+                        <td>{{ class_name[loop.index0] }}</td>
+                        <td>{{ record[loop.index0] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <form action="/" method="GET">
+                <input type="submit" value="Clear" class="btn yellow">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
